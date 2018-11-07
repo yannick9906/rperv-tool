@@ -2,8 +2,8 @@
     /**
      * Created by PhpStorm.
      * User: yanni
-     * Date: 04.10.2016
-     * Time: 22:05
+     * Date: 11/7/2018
+     * Time: 11:46 PM
      */
 
     ini_set("display_errors", "on");
@@ -11,16 +11,15 @@
     header("Content-Type: text/json");
 
     require_once '../../classes/PDO_Mysql.php'; //DB Anbindung
+    require_once '../../classes/Athlete.php';
+    require_once '../../classes/Club.php';
     require_once '../../classes/User.php';
 
     $user = \rperv\User::checkSession();
 
-    if(intval($_GET["id"]) == -1)
-        $userToEdit = $user;
-    else
-        $userToEdit = \rperv\User::fromUID(intval($_GET["id"]));
+    $athleteToView = \rperv\Athlete::fromAID(intval($_GET["id"]));
 
-    if($userToEdit->getUID() != null)
-        echo json_encode($userToEdit);
+    if($athleteToView->getAID() != null)
+        echo json_encode($athleteToView);
     else
         echo json_encode(["success" => false, "error" => "ID unknown"]);

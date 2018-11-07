@@ -22,6 +22,6 @@
     if(!\rrshop\User::doesUserNameExist($username)) {
         if($username != "" && $passhash != "" && $email) {
             \rperv\User::createUser($username, $passhash, $email);
-            echo json_encode(["success" => "1"]);
-        } else  echo json_encode(["success" => "0", "error" => "missing fields"]);
-    } else  echo json_encode(["success" => "0", "error" => "username exists"]);
+            echo json_encode(["success" => true]);
+        } else  echo json_encode(["success" => false, "error" => "missing fields"]);
+    } else  echo json_encode(["success" => false, "error" => "username exists"]);
