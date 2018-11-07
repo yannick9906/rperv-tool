@@ -21,7 +21,7 @@
     $athleteToEdit = \rperv\Athlete::fromAID(intval($_POST["id"]));
 
     if($athleteToEdit->getFirstname() == '' or $athleteToEdit->getFirstname() == null) {
-        echo json_encode(["success" => "false", "error" => "user not found"]);
+        echo json_encode(["success" => false, "error" => "user not found"]);
         exit();
     }
 

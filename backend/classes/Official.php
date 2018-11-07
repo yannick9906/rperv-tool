@@ -45,7 +45,7 @@
          * @param int $oID
          * @return Official
          */
-        public static function fromAID($oID) {
+        public static function fromOID($oID) {
             $pdo = new PDO_MYSQL();
             $res = $pdo->query("SELECT * FROM rperv_officials WHERE oID = :oid", [":oid" => $oID]);
             return new Official($res->oID, $res->firstname, $res->lastname, $res->gender, $res->title, $res->function, $res->birthday, $res->clubID);
