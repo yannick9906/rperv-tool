@@ -1,0 +1,27 @@
+<?php
+    /**
+     * Created by PhpStorm.
+     * User: yanni
+     * Date: 04.10.2016
+     * Time: 22:36
+     */
+
+    ini_set("display_errors", "on");
+    error_reporting(E_ALL & ~E_NOTICE);
+    header("Content-Type: text/json");
+
+    require_once '../../classes/PDO_Mysql.php'; //DB Anbindung
+    require_once '../../classes/User.php';
+
+    $user = \rperv\User::checkSession();
+
+    $username = $_POST["username"];
+    $passhash = $_POST["passhash"];
+    $email = $_POST["email"];
+
+    if(!\rrshop\User::doesUserNameExist($username)) {
+        if($username != "" && $passhash != "" && $email) {
+            \rperv\User::createUser($username, $passhash, $email);
+            echo json_encode(["success" => "1"]);
+        } else  echo json_encode(["success" => "0", "error" => "missing fields"]);
+    } else  echo json_encode(["success" => "0", "error" => "username exists"]);
