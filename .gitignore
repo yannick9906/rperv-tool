@@ -1,0 +1,12 @@
+# Created by .ignore support plugin (hsz.mobi)
+setup.php
+passwords.php
+password.php
+lib/
+fonts/
+vendor/
+.idea/
+_js/
+index_bak.html
+invoices/
+test/
